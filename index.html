@@ -1,0 +1,71 @@
+import React from "react"; import { motion } from "framer-motion"; import { Card } from "@/components/ui/card";
+
+export default function AlttpRandomizerOverlay() { return ( <div className="relative w-full h-screen bg-[#1a0f0b] text-white font-pixel overflow-hidden"> {/* Background and frame */} <div className="absolute inset-0 bg-gradient-to-br from-[#3b1e14] to-[#1a0f0b]" /> <div className="absolute inset-4 border-4 border-yellow-700 rounded-2xl shadow-[0_0_20px_rgba(255,215,0,0.3)]" />
+
+{/* Animated candle torches (subtle) */}
+  {["top-10 left-[3%]", "top-10 right-[3%]", "bottom-10 left-[3%]", "bottom-10 right-[3%]"].map((pos, i) => (
+    <motion.div
+      key={i}
+      className={`absolute ${pos} w-4 h-12 bg-gradient-to-t from-amber-600 to-yellow-300 rounded-md shadow-[0_0_10px_rgba(255,200,0,0.6)]`}
+      animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.03, 1] }}
+      transition={{ repeat: Infinity, duration: 1.5 + Math.random() * 0.5, ease: "easeInOut" }}
+    />
+  ))}
+
+  {/* Game Capture Area */}
+  <Card className="absolute top-8 left-8 w-[70%] h-[75%] bg-black border-2 border-yellow-600 rounded-xl shadow-lg overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5 }}
+      className="w-full h-full flex items-center justify-center text-yellow-500 text-xl"
+    >
+      Game Capture Area
+    </motion.div>
+  </Card>
+
+  {/* Webcam Area */}
+  <Card className="absolute bottom-8 right-8 w-[25%] h-[25%] bg-black border-2 border-yellow-600 rounded-xl shadow-lg overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1 }}
+      className="w-full h-full flex items-center justify-center text-yellow-500 text-lg"
+    >
+      Webcam Area
+    </motion.div>
+  </Card>
+
+  {/* Item Tracker Area */}
+  <Card className="absolute top-[80%] left-8 w-[70%] h-[12%] bg-black border-2 border-yellow-600 rounded-xl shadow-lg overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.5 }}
+      className="w-full h-full flex items-center justify-center text-yellow-500 text-lg"
+    >
+      Item Tracker Area
+    </motion.div>
+  </Card>
+
+  {/* Pixel corners */}
+  {["top-4 left-4", "top-4 right-4", "bottom-4 left-4", "bottom-4 right-4"].map((pos, i) => (
+    <div
+      key={i}
+      className={`absolute ${pos} w-8 h-8 border-4 border-yellow-600 bg-yellow-500/20 rounded-sm`}
+    />
+  ))}
+
+  {/* Stream Title */}
+  <motion.h1
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.3 }}
+    className="absolute top-2 left-1/2 -translate-x-1/2 text-3xl text-yellow-400 font-bold tracking-wide"
+  >
+    Swiper's Randomized Adventure
+  </motion.h1>
+</div>
+
+); }
+
